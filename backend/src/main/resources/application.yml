@@ -1,0 +1,65 @@
+server:
+  port: 8080
+ 
+spring:
+  application:
+    name: placementiq-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/placementiq_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  # ADDED IN PART 2 - limits enforced by Spring's multipart resolver.
+  # These must stay >= placementiq.resume.max-file-size-bytes, otherwise Tomcat
+  # rejects the request before our own validator can produce a friendly message.
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 6MB
+ 
+# Custom application properties
+placementiq:
+  jwt:
+    secret: "ThisIsASecretKeyForPlacementIQPlatformJWTTokenGenerationMinimum256Bits"
+    expiration-ms: 86400000 # 24 hours
+    refresh-expiration-ms: 604800000 # 7 days
+  cors:
+    allowed-origins: "http://localhost:3000"
+  # MODIFIED IN PART 3 - the Part 1 placeholder is replaced by an environment
+  # variable lookup. ${OPENAI_API_KEY:} resolves to the OPENAI_API_KEY environment
+  # variable and falls back to an empty string, so the real key is never written
+  # into this file or committed to source control. OpenAiProperties.isConfigured()
+  # treats an empty value as "not configured" and the API then returns a clear
+  # 503 instead of sending an unauthenticated request to OpenAI.
+  openai:
+    api-key: ${OPENAI_API_KEY:}
+    model: ${OPENAI_MODEL:gpt-4o-mini}
+    base-url: "https://api.openai.com/v1"
+    temperature: 0.2
+    max-tokens: 1800
+    connect-timeout-ms: 10000
+    read-timeout-ms: 60000
+    max-retries: 2
+  # ADDED IN PART 2 - Resume Management module settings.
+  resume:
+    upload-dir: "./uploads/resumes"
+    max-file-size-bytes: 5242880   # 5 MB
+    allowed-extensions: "pdf,docx"
+ 
+logging:
+  level:
+    com.placementiq: DEBUG
+    org.springframework.security: INFO

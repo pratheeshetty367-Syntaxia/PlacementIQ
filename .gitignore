@@ -1,0 +1,29 @@
+# Java / Spring Boot
+backend/target/
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Uploaded resumes
+backend/uploads/resumes/*
+!backend/uploads/resumes/.gitkeep
+
+# Frontend
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+application-local.yml
+application-local.yaml
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store

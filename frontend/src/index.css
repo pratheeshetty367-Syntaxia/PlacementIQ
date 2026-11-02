@@ -1,0 +1,63 @@
+/* ==========================================================================
+   PlacementIQ design system (global tokens + base styles)
+   Identity: deep ink + warm paper + saffron highlights, serif display type.
+   ========================================================================== */
+:root {
+  --ink: #0f172a;
+  --ink-2: #1e293b;
+  --ink-3: #334155;
+  --paper: #f6f1e7;
+  --paper-2: #efe8d8;
+  --card: #ffffff;
+  --line: #e6dfd0;
+  --muted: #6b7280;
+  --teal: #0e7c7b;
+  --teal-dark: #0a5c5b;
+  --teal-soft: #dff1ef;
+  --saffron: #f2a93b;
+  --saffron-soft: #fdf0d8;
+  --coral: #e4572e;
+  --coral-soft: #fde8e1;
+  --sage: #5b8c5a;
+  --sage-soft: #e5f0e3;
+  --radius: 14px;
+  --radius-sm: 9px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow: 0 8px 24px -10px rgba(15, 23, 42, 0.18);
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 12% -10%, rgba(242, 169, 59, 0.16), transparent 42%),
+    radial-gradient(circle at 100% 0%, rgba(14, 124, 123, 0.10), transparent 38%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; color: var(--ink); }
+a { color: var(--teal-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font-family: inherit; }
+input, textarea, select { font-family: inherit; }
+
+.app-container { min-height: 100vh; display: flex; flex-direction: column; }
+
+.page-loading {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-weight: 600;
+}
+
+:focus-visible { outline: 3px solid rgba(242, 169, 59, 0.55); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
