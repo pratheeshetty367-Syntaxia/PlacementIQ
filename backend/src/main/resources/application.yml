@@ -5,9 +5,10 @@ spring:
   application:
     name: placementiq-backend
   datasource:
-    url: jdbc:postgresql://localhost:5432/placementiq_db
-    username: postgres
-    password: postgres
+    datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/placementiq_db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -33,7 +34,7 @@ spring:
 # Custom application properties
 placementiq:
   jwt:
-    secret: "ThisIsASecretKeyForPlacementIQPlatformJWTTokenGenerationMinimum256Bits"
+    secret: ${JWT_SECRET}
     expiration-ms: 86400000 # 24 hours
     refresh-expiration-ms: 604800000 # 7 days
   cors:

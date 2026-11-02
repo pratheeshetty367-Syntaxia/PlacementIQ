@@ -27,3 +27,6 @@ application-local.yaml
 .vscode/
 *.iml
 .DS_Store
+
+# Local Salesforce files
+.sf/
