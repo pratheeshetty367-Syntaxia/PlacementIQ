@@ -24,7 +24,7 @@ Change placementiq.jwt.secret before any real deployment.
     cp .env.example .env
     npm install
     npm start
-Opens http://localhost:3000.
+Opens  https://placementiq-frontend.onrender.com/login.
 
 ## Try it
 Register, upload a PDF/DOCX resume on the Resume page, then run Analyze on the ATS Analysis page.
